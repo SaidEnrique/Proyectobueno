@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ToDo List</title>
+</head>
+<body>
+    <h1>Lista de Tareas</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="titulo" placeholder="Título" required><br><br>
+        <textarea name="descripcion" placeholder="Descripción"></textarea><br><br>
+        <button type="submit">Agregar Tarea</button>
+    </form>
+
+    <h2>Tareas:</h2>
+    <ul>
+        {% for Tarea in Tareas %}
+            <li>{{ Tarea.titulo }} - {{ Tarea.descripcion }} ({{ Tarea.fecha_creacion }})</li>
+        {% empty %}
+            <li>No hay tareas aún.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
